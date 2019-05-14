@@ -62,23 +62,23 @@
     - α：迭代速率
   - 基本迭代公式
 
-    <img src="./res/equ1.png">
+    <img src="./res/equ1.PNG">
 
   - 基本迭代公式在初始阈值与目标阈值偏差较大时会产生较大的超调，降低收敛速度，因此需要对基本迭代公式进行改动
 
-    <img src="./res/equ2.png">
+    <img src="./res/equ2.PNG">
 
   - 在误差较小的情况下上述结果收敛速度较低，考虑到：
   
-    <img src="./res/bel.png">
+    <img src="./res/bel.PNG">
     
     必有:
 
-    <img src="./res/scale.png">
+    <img src="./res/scale.PNG">
     
     因此最终使用的迭代公式为：
 
-    <img src="./res/equ3.png">
+    <img src="./res/equ3.PNG">
   - 实验效果
 
   <center>
