@@ -55,27 +55,30 @@
 ## 自适应阈值霍夫直线检测
   由上一实验我们发现霍夫直线检测中的阈值与图像、检测算子有着较强的相关性，在某些使用场景下我们仅关心检测结果中最显著的部分，因此我们可以设定一个期望直线数量$n_0$，以检测到直线数量$n_i$与期望直线数量之差$e=n_i-n_0$作反馈，动态调整阈值。
   - 参数定义
-    - $n_0$：期望直线数量
-    - $n_i$：第i次检测计算检测直线数量
-    - $e$：误差
-    - $threshold_i$：第i次检测阈值
-    - $\alpha$：迭代速率
+    - n0：期望直线数量
+    - ni：第i次检测计算检测直线数量
+    - e：误差
+    - threshold：检测阈值
+    - α：迭代速率
   - 基本迭代公式
-    $$threshold_{i+1}=threshold_i+\alpha \times e = threshold_i+\alpha\times(n_i-n_0)$$
+
+    <img src="./res/equ1.png">
+
   - 基本迭代公式在初始阈值与目标阈值偏差较大时会产生较大的超调，降低收敛速度，因此需要对基本迭代公式进行改动
-    $$
-        \begin{aligned}
-        threshold_{i+1} &=threshold_i+\alpha\times clip(e) \\
-            &=threshold_i+\alpha\times clip(n_i-n_0)
-        \end{aligned}
-    $$
-  - 在误差较小的情况下上述结果收敛速度较低，考虑到$(n_i-n_0)\in Z$，必有$(n_i-n_0)^2>(n_i-n_0)$，因此最终使用的迭代公式为：
-    $$
-        \begin{aligned}
-            threshold_{i+1} &= threshold_i + \alpha\times clip(e^2) \\
-                &= threshold_i + \alpha \times clip((n_i-n_0)^2)
-        \end{aligned}
-    $$
+
+    <img src="./res/equ2.png">
+
+  - 在误差较小的情况下上述结果收敛速度较低，考虑到：
+  
+    <img src="./res/bel.png">
+    
+    必有:
+
+    <img src="./res/scale.png">
+    
+    因此最终使用的迭代公式为：
+
+    <img src="./res/equ3.png">
   - 实验效果
 
   <center>
